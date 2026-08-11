@@ -1,0 +1,316 @@
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+
+/* Typography: IBM Plex. Condensed for display (echoes the club's deck headings),
+   regular for prose, mono for instrumentation labels, Caveat for editorial margin notes. */
+@import "@fontsource/ibm-plex-sans-condensed/600.css";
+@import "@fontsource/ibm-plex-sans-condensed/700.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/caveat/600.css";
+
+/* ==========================================================================
+   DESIGN SYSTEM
+   Grounded, low-saturation, UCSB-derived. No neon, no bloom, no gradients
+   used as decoration. Colour is a functional signal only: the single accent
+   marks interaction and nothing else.
+   ========================================================================== */
+
+:root {
+  /* --- Primitives: UCSB marks ------------------------------------------ */
+  /* The four official values, used verbatim. Navy is the page itself rather
+     than an accent; gold marks interaction; white carries the text. */
+  --ucsb-navy: #003660; /* PMS 2955 C */
+  --ucsb-gold: #febc11; /* PMS 7549 C */
+  --ucsb-white: #ffffff;
+  --ucsb-dark-80: #111517;
+
+  /* --- Primitives: navy ramp -------------------------------------------- */
+  /* Built by darkening and lightening UCSB navy on its own hue (~207deg), so
+     every surface on the page is a shade of the brand blue, never a grey. */
+  --b-950: #00192d; /* seabed, the page base */
+  --b-900: #00223c;
+  --b-850: #002b4d;
+  --b-800: #003660; /* UCSB navy, the sunlit surface */
+  --b-700: #0a4372; /* cards and panels */
+  --b-600: #12507f; /* raised / hover */
+  --b-500: #1c5f92;
+
+  /* Light tints for text, mixed toward white so they stay on-hue. */
+  --b-200: #b8cce0;
+  --b-300: #8ca9c6;
+
+  /* --- Semantic: surfaces ---------------------------------------------- */
+  /* Panels are a white veil rather than a fixed navy, so a card is always the
+     same step lighter than whatever depth it happens to sit at. A fixed colour
+     would read darker than the page near the surface and lighter near the
+     seabed, since the background ramps underneath it. */
+  --background: var(--b-950);
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-raised: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  /* The one opaque panel: hover overlays that must fully mask what is beneath. */
+  --overlay: var(--b-850);
+
+  /* --- Semantic: text --------------------------------------------------- */
+  --foreground: var(--ucsb-white);
+  --text-muted: var(--b-200);
+  --text-faint: var(--b-300);
+
+  /* --- Semantic: lines -------------------------------------------------- */
+  /* Two weights only, applied consistently: resting and emphasised.
+     White at low alpha, so lines sit on the navy rather than muddying it. */
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.26);
+
+  /* --- Scroll depth indicator ------------------------------------------- */
+  /* An open water column: the fill stays fully transparent so the page shows
+     through, and only the edge is drawn. Track edge and submarine share one
+     pastel, so the two read as a single piece of line art on the deep water. */
+  --track: #f0f8ff;
+  /* The edge sits back so the submarine stays the thing you actually look at. */
+  --track-edge: rgba(240, 248, 255, 0.45);
+  --track-edge-width: 3px;
+  --sub-ink: var(--track);
+
+  /* --- Semantic: accent (functional use only) --------------------------- */
+  --accent: var(--ucsb-gold);
+  --accent-hover: #ffca3d;
+  /* Dark 80 is the brand's high-contrast ink, and it is what sits on gold. */
+  --accent-ink: var(--ucsb-dark-80);
+  /* Softened gold for annotation text, legible on navy without shouting. */
+  --accent-quiet: #e5c179;
+
+  /* --- Depth scale: the page's one environmental gradient ---------------- */
+  /* UCSB navy in the sunlit shallows down to the deep navy base at the seabed.
+     Stays on the brand hue end to end; it never approaches black. */
+  --depth-surface: var(--b-800);
+  --depth-floor: var(--b-950);
+
+  /* --- Radii ------------------------------------------------------------ */
+  --radius: 0.5rem;
+
+  /* --- Type scale ------------------------------------------------------- */
+  --text-display: clamp(2.5rem, 6vw, 4rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.25rem);
+  --text-h3: 1.0625rem;
+  --text-body: 0.9375rem;
+  --text-small: 0.8125rem;
+  --text-label: 0.6875rem;
+  --tracking-label: 0.18em;
+
+  /* --- Motion ----------------------------------------------------------- */
+  /* Short and unfussy. Nothing here blurs, bounces, or overshoots. */
+  --dur-fast: 160ms;
+  --dur: 260ms;
+  --dur-reveal: 420ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --reveal-stagger: 55ms;
+
+  /* --- Shadcn compatibility mappings ------------------------------------ */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--foreground);
+  --primary: var(--accent);
+  --primary-foreground: var(--accent-ink);
+  --secondary: var(--surface-hover);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface);
+  --muted-foreground: var(--text-muted);
+  --destructive: #b4483c;
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--b-500);
+
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@theme inline {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans Condensed', 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat', cursive;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-hover: var(--surface-hover);
+  --color-overlay: var(--overlay);
+  --color-track: var(--track);
+  --color-sub-ink: var(--sub-ink);
+  --color-muted-foreground: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-quiet: var(--accent-quiet);
+  --color-navy: var(--ucsb-navy);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  h1,
+  h2 {
+    @apply font-display;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal
+   Opacity and a short lift only. No blur filter: compositing a blur on every
+   frame across dozens of elements is what made this feel heavy.
+   -------------------------------------------------------------------------- */
+/* Scoped to `.js` (set inline in index.html): without scripting the content simply
+   renders, rather than sitting invisible waiting for an observer that never runs. */
+.js [data-reveal] {
+  opacity: 0;
+  translate: 0 12px;
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    translate var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, translate;
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  translate: 0 0;
+  will-change: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Sponsorship depth gauge
+   Column metrics live here so the tier rails, the leader lines that point at
+   them, and the submarine lane can all be derived from one source.
+   -------------------------------------------------------------------------- */
+.tier-grid {
+  --col-w: 3.5rem; /* matches w-14 */
+  --sub-lane: 0rem; /* the survey lane is desktop only */
+}
+
+@media (min-width: 640px) {
+  .tier-grid {
+    --col-w: 6rem; /* matches sm:w-24 */
+    --sub-lane: 2.5rem; /* matches sm:w-10 */
+  }
+}
+
+@media (min-width: 768px) {
+  .tier-grid {
+    --col-w: 7rem; /* matches md:w-28 */
+  }
+}
+
+/* Keeps a container scrollable on very narrow screens without drawing scrollbar
+   chrome across the design. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Suspended particulate, drifting up through the water column. Deliberately at
+   the edge of visibility: it should register as texture, not as animation. */
+@keyframes motes {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-180px);
+    opacity: 0;
+  }
+}
+
+.animate-motes {
+  animation-name: motes;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+[data-enter] {
+  animation: enter-up var(--dur-reveal) var(--ease-out) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+  [data-enter] {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoSub Robotics &middot; UC Santa Barbara</title>
+    <meta name="description" content="AutoSub Robotics is UC Santa Barbara's autonomous underwater vehicle team, competing in RoboSub." />
+  </head>
+  <body>
+    <!-- Reveal animations hide their targets until an observer fires. Gate that on JS
+         being alive, so a script failure can never leave the page blank. -->
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
