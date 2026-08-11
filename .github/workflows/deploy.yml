@@ -20,12 +20,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      # Node 22: vite and rolldown require ^20.19 || >=22.12, and v5 of the actions
+      # drops the Node 20 runtime deprecation warning.
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+
+      - name: Versions
+        run: node -v && npm -v
 
       - run: npm ci
 
@@ -36,7 +41,10 @@ jobs:
           VITE_BASE: /${{ github.event.repository.name }}/
         run: npm run build
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Show build output
+        run: ls -R dist | head -30
+
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
