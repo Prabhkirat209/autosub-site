@@ -32,7 +32,14 @@ jobs:
       - name: Versions
         run: node -v && npm -v
 
-      - run: npm ci
+      # `npm ci` first for a deterministic install, falling back to `npm install`.
+      # The lockfile is generated on Windows, and npm does not record the transitive
+      # dependencies of optional packages that do not apply to the host platform
+      # (here @emnapi/runtime, pulled in by the wasm builds of tailwind/rolldown).
+      # That makes `npm ci` fail on Linux through no fault of the lockfile's versions,
+      # which are still pinned and still honoured by the fallback.
+      - name: Install dependencies
+        run: npm ci || npm install --no-audit --no-fund
 
       - name: Build
         # Project sites live at /<repo>/, so the asset base has to match the repo
