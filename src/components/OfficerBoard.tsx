@@ -1,12 +1,17 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
+import matthewPhoto from '@/assets/officers/matthew.webp'
+import chrisPhoto from '@/assets/officers/chris.webp'
+import rajaPhoto from '@/assets/officers/raja.webp'
+import kaustubhPhoto from '@/assets/officers/kaustubh.webp'
+import boEnPhoto from '@/assets/officers/bo-en.webp'
 
-/** Current board, in display order. Set `photo` to an imported image once headshots arrive. */
+/** Current board, in display order. */
 const OFFICERS: { name: string; role: string; photo?: string }[] = [
-  { name: 'Chris', role: 'Co-President' },
-  { name: 'Matthew', role: 'Co-President' },
-  { name: 'Kaustubh', role: 'Technical Director' },
-  { name: 'Bo-En', role: 'Secretary' },
-  { name: 'Raja', role: 'Treasurer' },
+  { name: 'Matthew', role: 'Co-President', photo: matthewPhoto },
+  { name: 'Chris', role: 'Co-President', photo: chrisPhoto },
+  { name: 'Raja', role: 'Treasurer', photo: rajaPhoto },
+  { name: 'Kaustubh', role: 'Technical Director', photo: kaustubhPhoto },
+  { name: 'Bo-En', role: 'Secretary', photo: boEnPhoto },
 ]
 
 export function OfficerBoard() {
@@ -34,10 +39,14 @@ export function OfficerBoard() {
               <img
                 src={o.photo}
                 alt={o.name}
-                className="mx-auto h-16 w-16 rounded-full border border-line object-cover"
+                loading="lazy"
+                decoding="async"
+                width={80}
+                height={80}
+                className="mx-auto h-20 w-20 rounded-full border border-line object-cover"
               />
             ) : (
-              <div className="mx-auto h-16 w-16 rounded-full border border-dashed border-line-strong bg-background/60" />
+              <div className="mx-auto h-20 w-20 rounded-full border border-dashed border-line-strong bg-background/60" />
             )}
             <p className="mt-3 text-sm font-semibold text-foreground">{o.name}</p>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{o.role}</p>
