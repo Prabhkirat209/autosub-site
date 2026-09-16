@@ -1,16 +1,12 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
-import { NeedsInfo } from '@/components/NeedsInfo'
 
-/** Roles are placeholders until the club confirms its board. Fill `name` to publish. */
-const ROLES: { role: string; name: string | null }[] = [
-  { role: 'President', name: null },
-  { role: 'Vice President', name: null },
-  { role: 'Treasurer', name: null },
-  { role: 'Software Lead', name: null },
-  { role: 'Electrical Lead', name: null },
-  { role: 'Mechanical Lead', name: null },
-  { role: 'Business Lead', name: null },
-  { role: 'Outreach Lead', name: null },
+/** Current board, in display order. Set `photo` to an imported image once headshots arrive. */
+const OFFICERS: { name: string; role: string; photo?: string }[] = [
+  { name: 'Chris', role: 'Co-President' },
+  { name: 'Matthew', role: 'Co-President' },
+  { name: 'Kaustubh', role: 'Technical Director' },
+  { name: 'Bo-En', role: 'Secretary' },
+  { name: 'Raja', role: 'Treasurer' },
 ]
 
 export function OfficerBoard() {
@@ -26,24 +22,28 @@ export function OfficerBoard() {
         </p>
       </div>
 
-      <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {ROLES.map((r) => (
+      {/* Flex-wrap rather than a fixed grid so five cards stay centred on every width. */}
+      <div className="mt-14 flex flex-wrap justify-center gap-4">
+        {OFFICERS.map((o) => (
           <div
-            key={r.role}
+            key={o.name}
             data-reveal
-            className="rounded-xl border border-line bg-surface p-4 text-center transition-colors duration-200 hover:border-line-strong hover:bg-surface-hover"
+            className="w-[calc(50%-0.5rem)] rounded-xl border border-line bg-surface p-4 text-center transition-colors duration-200 hover:border-line-strong hover:bg-surface-hover sm:w-40"
           >
-            {/* Headshot slot. Swap the placeholder for an <img> once photos arrive. */}
-            <div className="mx-auto h-16 w-16 rounded-full border border-dashed border-line-strong bg-background/60" />
-            <p className="mt-3 text-sm font-semibold text-foreground">{r.name ?? <NeedsInfo>name</NeedsInfo>}</p>
-            <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{r.role}</p>
+            {o.photo ? (
+              <img
+                src={o.photo}
+                alt={o.name}
+                className="mx-auto h-16 w-16 rounded-full border border-line object-cover"
+              />
+            ) : (
+              <div className="mx-auto h-16 w-16 rounded-full border border-dashed border-line-strong bg-background/60" />
+            )}
+            <p className="mt-3 text-sm font-semibold text-foreground">{o.name}</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{o.role}</p>
           </div>
         ))}
       </div>
-
-      <p data-reveal className="mt-8 text-center text-xs text-muted-foreground/70">
-        Roles listed are placeholders: <NeedsInfo>confirm the real board + headshots</NeedsInfo>
-      </p>
     </section>
   )
 }

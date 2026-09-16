@@ -1,7 +1,4 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
-import { NeedsInfo } from '@/components/NeedsInfo'
-
-const SUBTEAM_MEETINGS = ['Software & AI', 'Electrical', 'Mechanical', 'Business & PR']
 
 export function JoinUs() {
   const ref = useRevealOnScroll<HTMLDivElement>()
@@ -18,36 +15,21 @@ export function JoinUs() {
 
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <Step n={1} title="Come to a meeting">
-          <div className="mt-3 space-y-2.5">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">General</p>
-              <NeedsInfo>day / time / room</NeedsInfo>
-            </div>
-            {SUBTEAM_MEETINGS.map((s) => (
-              <div key={s}>
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{s}</p>
-                <NeedsInfo>day / time / room</NeedsInfo>
-              </div>
-            ))}
-          </div>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            General and subteam meeting times are to be announced.
+          </p>
         </Step>
 
-        <Step n={2} title="Join the group chat">
+        <Step n={2} title="Join the Discord">
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            We coordinate everything there: announcements, build sessions, and questions.
+            We coordinate everything on Discord: announcements, build sessions, and questions.
           </p>
-          <div className="mt-4">
-            <NeedsInfo>Slack / Discord invite link</NeedsInfo>
-          </div>
         </Step>
 
-        <Step n={3} title="Do an intro project">
+        <Step n={3} title="Take the onboarding course">
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            A short starter project on your subteam to get you up to speed on the tools we use.
+            A short course on your subteam that gets you up to speed on the tools we use.
           </p>
-          <div className="mt-4">
-            <NeedsInfo>intro project links per subteam</NeedsInfo>
-          </div>
         </Step>
       </div>
     </section>

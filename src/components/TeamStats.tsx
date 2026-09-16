@@ -1,6 +1,5 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
 import { cn } from '@/lib/utils'
-import { NeedsInfo } from '@/components/NeedsInfo'
 
 const MAJORS = [
   { label: 'Mechanical Engineering', pct: 37.2, color: 'bg-surface-hover' },
@@ -9,10 +8,11 @@ const MAJORS = [
   { label: 'Communication', pct: 4.7, color: 'bg-faint' },
 ]
 
+// Survey is from the previous academic year; everyone has since moved up one class.
 const YEARS = [
-  { label: 'First Year', pct: 54.3, color: 'bg-surface-hover' },
-  { label: 'Second Year', pct: 40, color: 'bg-surface-hover' },
-  { label: 'Third Year', pct: 5.7, color: 'bg-accent' },
+  { label: 'Second Year', pct: 54.3, color: 'bg-surface-hover' },
+  { label: 'Third Year', pct: 40, color: 'bg-surface-hover' },
+  { label: 'Fourth Year', pct: 5.7, color: 'bg-accent' },
 ]
 
 export function TeamStats() {
@@ -24,12 +24,8 @@ export function TeamStats() {
         <p className="font-mono text-xs tracking-[0.3em] text-faint">OUR CREW</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">A team still growing</h2>
         <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Freshmen to upperclassmen, across every engineering discipline, built from the ground up since
+          Sophomores to seniors, across every engineering discipline, built from the ground up since
           February 2026.
-        </p>
-        {/* The packet listed headcount as "47??" needs confirming before it goes public. */}
-        <p className="mt-4 text-sm text-muted-foreground">
-          Total members: <NeedsInfo>confirm headcount</NeedsInfo>
         </p>
       </div>
 

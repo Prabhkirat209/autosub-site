@@ -16,6 +16,15 @@ export function Mission() {
         data-reveal
         className="mt-10 space-y-5 rounded-xl border border-line bg-surface p-6 text-sm leading-relaxed text-foreground/85 sm:p-8 sm:text-base"
       >
+        <h3 className="font-display text-xl font-semibold text-foreground sm:text-2xl">Our Mission</h3>
+        <p>
+          The mission of this organization is to provide an opportunity for UCSB students to gain hands-on
+          experience in the various facets of designing autonomous underwater vehicles (AUVs). By bridging
+          curriculum concepts with real-world application, we aim to foster a collaborative, interdisciplinary
+          community where students from all backgrounds can develop skills in both STEM and working with others.
+          Furthermore, our work will directly serve the local Santa Barbara ecosystem through the use of AUVs to
+          monitor the local conditions of the ocean and ecosystems surrounding our campus.
+        </p>
         <p>
           With UC Santa Barbara being the only UC to have a beach directly on campus, we wondered why there
           wasn&rsquo;t already an organization for students to get hands-on experience in marine robotics and
