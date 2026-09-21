@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { animate } from 'animejs'
 import { cn } from '@/lib/utils'
-import { NeedsInfo, NeedsInfoPanel } from '@/components/NeedsInfo'
 import submarineUrl from '@/assets/submarine.png'
 
 type TierKey = 'silver' | 'gold' | 'platinum'
@@ -395,16 +394,14 @@ export function SponsorshipTiers() {
         >
           Become a Sponsor
         </a>
-        {/* Wire this to the finished sponsorship PDF once it's exported. */}
-        <span className="inline-flex items-center rounded-md border border-dashed border-accent-quiet/30 px-6 py-2.5">
-          <NeedsInfo>sponsorship packet PDF to link</NeedsInfo>
-        </span>
-      </div>
-
-      <div data-reveal className="mt-20 text-center">
-        <p className="font-mono text-xs tracking-[0.3em] text-faint">OUR SPONSORS</p>
-        <h3 className="mt-3 text-xl font-semibold text-foreground">The people backing our first build</h3>
-        <NeedsInfoPanel className="mt-6">sponsor logos once partners are confirmed</NeedsInfoPanel>
+        <a
+          href="https://www.canva.com/design/DAHPm2kQdE4/IbEpo8Mw60n5fjZSJCDeYw/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md border border-line px-6 py-2.5 text-sm font-semibold text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
+        >
+          Sponsorship Packet
+        </a>
       </div>
     </section>
   )

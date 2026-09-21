@@ -1,4 +1,9 @@
-import { NeedsInfo } from '@/components/NeedsInfo'
+const EMAIL = 'autosubrobotics@gmail.com'
+
+const SOCIALS = [
+  { label: 'Instagram', href: 'https://www.instagram.com/autosubrobotics/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/autosub-robotics-a3b648420' },
+]
 
 export function Footer() {
   return (
@@ -13,16 +18,26 @@ export function Footer() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <span className="inline-flex items-center rounded-md border border-dashed border-accent-quiet/30 px-6 py-2.5">
-            <NeedsInfo>club contact email</NeedsInfo>
-          </span>
+          <a
+            href={`mailto:${EMAIL}`}
+            className="rounded-md bg-accent px-6 py-2.5 text-sm font-semibold text-accent-ink transition-colors duration-300 hover:bg-accent-hover"
+          >
+            {EMAIL}
+          </a>
         </div>
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Instagram</span>
-          <NeedsInfo>handle</NeedsInfo>
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">LinkedIn</span>
-          <NeedsInfo>handle</NeedsInfo>
+          {SOCIALS.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            >
+              {s.label}
+            </a>
+          ))}
         </div>
 
         <p className="mt-10 text-xs text-muted-foreground/70">

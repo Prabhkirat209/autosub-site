@@ -31,10 +31,12 @@ instead of invented copy. To find every one of them:
 grep -rn "NeedsInfo" src/
 ```
 
-Outstanding at time of writing: the sub's name and full spec sheet, officer names
-and headshots, meeting times and rooms, the group chat invite, intro project links,
-the club email and social handles, sponsor logos, the sponsorship packet PDF, photos
-throughout, and confirmed team headcount.
+Outstanding at time of writing: officer names and headshots, meeting times and rooms,
+the group chat invite, intro project links, and confirmed team headcount.
+
+Pulled from the page until their content is ready (components kept, re-add them in
+`App.tsx`): the robot section (`RobotSpecs`, `AUVDashboard`, plus the `Robot` nav link),
+the "From the build" media section (`Media`), and the sponsor logo wall.
 
 Fill a value in and the note disappears on its own. In `RobotSpecs.tsx` and
 `AUVDashboard.tsx` that means replacing a `null` with a string.

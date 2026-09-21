@@ -8,10 +8,7 @@ import { Team } from '@/components/Team'
 import { TeamStats } from '@/components/TeamStats'
 import { OfficerBoard } from '@/components/OfficerBoard'
 import { JoinUs } from '@/components/JoinUs'
-import { RobotSpecs } from '@/components/RobotSpecs'
-import { AUVDashboard } from '@/components/AUVDashboard'
 import { Competitions } from '@/components/Competitions'
-import { Media } from '@/components/Media'
 import { SponsorshipTiers } from '@/components/SponsorshipTiers'
 import { Footer } from '@/components/Footer'
 
@@ -32,11 +29,9 @@ function App() {
           <OfficerBoard />
           <JoinUs />
 
-          {/* OUR ROBOT: the vehicle spec sheet, then its subsystems */}
-          <RobotSpecs />
-          <AUVDashboard />
+          {/* OUR ROBOT (RobotSpecs, AUVDashboard) and FROM THE BUILD (Media) are
+              pulled until the content is ready; the components are kept for later. */}
           <Competitions />
-          <Media />
 
           {/* SPONSORS */}
           <SponsorshipTiers />
