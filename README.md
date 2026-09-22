@@ -19,8 +19,8 @@ Pushing to `main` builds the site and publishes it to GitHub Pages via
 `.github/workflows/deploy.yml`. Enable it once, under **Settings > Pages > Build and
 deployment > Source: GitHub Actions**.
 
-The workflow sets `VITE_BASE` from the repository name, because project sites are
-served from `/<repo>/` rather than the domain root. Local development is unaffected.
+The site is served at https://autosub.net (set in `public/CNAME`, DNS on Cloudflare), so
+the workflow builds with `VITE_BASE=/`. Local development is unaffected.
 
 ## Content that still needs filling in
 

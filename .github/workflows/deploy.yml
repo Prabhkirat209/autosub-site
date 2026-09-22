@@ -42,10 +42,10 @@ jobs:
         run: npm ci || npm install --no-audit --no-fund
 
       - name: Build
-        # Project sites live at /<repo>/, so the asset base has to match the repo
-        # name. Deriving it here keeps the build correct whatever the repo is called.
+        # Served from the custom domain (public/CNAME) at the root, so the asset
+        # base is /. Without a custom domain this would be /<repo>/.
         env:
-          VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_BASE: /
         run: npm run build
 
       - name: Show build output
